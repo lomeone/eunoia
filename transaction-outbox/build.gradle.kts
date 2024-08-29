@@ -1,9 +1,9 @@
-group = rootProject.group
-version = "1.0-SNAPSHOT"
-
 plugins {
     id("com.gradleup.shadow") version "8.3.0"
 }
+
+group = rootProject.group
+version = "1.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
