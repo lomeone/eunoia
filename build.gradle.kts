@@ -1,12 +1,20 @@
+val groupName: String by project
+
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm")
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+allprojects {
+    group = groupName
+    version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+    apply {
+        plugin("kotlin")
+    }
+
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
