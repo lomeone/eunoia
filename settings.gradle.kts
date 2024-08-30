@@ -13,3 +13,4 @@ pluginManagement {
 
 include("exception")
 include("transaction-outbox")
+include("event")
