@@ -2,6 +2,7 @@ group = "${rootProject.group}.event.spring.transactional.outbox"
 version = "1.0-SNAPSHOT"
 
 val springKafkaVersion: String by project
+val kotlinxSerializationJsonVersion: String by project
 
 plugins {
     id("org.springframework.boot")
@@ -31,6 +32,9 @@ repositories {
 dependencies {
     implementation(project(":event-core"))
     implementation(project(":event-spring-kafka"))
+
+    // JSON
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationJsonVersion")
 
     // Kafka
     api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
