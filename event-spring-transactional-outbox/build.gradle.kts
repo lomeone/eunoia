@@ -10,6 +10,7 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.jpa")
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
@@ -29,6 +30,7 @@ repositories {
 
 dependencies {
     implementation(project(":event-core"))
+    implementation(project(":event-spring-kafka"))
 
     // Kafka
     api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
