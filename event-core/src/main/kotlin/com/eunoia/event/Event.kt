@@ -1,4 +1,4 @@
-package org.example.com.eunoia.event
+package com.eunoia.event
 
 interface Event {
     fun getBody(): String

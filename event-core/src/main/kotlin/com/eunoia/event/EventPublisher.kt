@@ -1,4 +1,4 @@
-package org.example.com.eunoia.event
+package com.eunoia.event
 
 interface EventPublisher {
     fun publish(destination: String, event: Event)
