@@ -1,5 +1,5 @@
 plugins {
-    id("com.gradleup.shadow") version "8.3.0"
+    id("com.gradleup.shadow")
 }
 
 group = rootProject.group
@@ -19,8 +19,6 @@ kotlin {
 }
 
 dependencies {
-    implementation(project(":event"))
-
     // Kafka Connect API
     implementation("org.apache.kafka:connect-api:3.4.1")
 
