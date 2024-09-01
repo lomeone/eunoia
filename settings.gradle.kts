@@ -20,6 +20,7 @@ pluginManagement {
 
 
 include("event-core")
+include("event-spring-kafka")
 include("event-spring-transactional-outbox")
 include("exception")
 include("transactional-outbox")
