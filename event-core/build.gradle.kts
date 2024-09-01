@@ -1,6 +1,4 @@
-plugins {
-    kotlin("jvm")
-}
+plugins {}
 
 group = "${rootProject.group}.event"
 version = "1.0-SNAPSHOT"
