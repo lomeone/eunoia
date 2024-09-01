@@ -1,6 +1,6 @@
 plugins {}
 
-group = rootProject.group
+group = "${rootProject.group}.exception"
 version = "1.0-SNAPSHOT"
 
 java {

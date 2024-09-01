@@ -2,7 +2,7 @@ plugins {
     id("com.gradleup.shadow")
 }
 
-group = rootProject.group
+group = "${rootProject.group}.transactional.outbox"
 version = "1.0-SNAPSHOT"
 
 java {
