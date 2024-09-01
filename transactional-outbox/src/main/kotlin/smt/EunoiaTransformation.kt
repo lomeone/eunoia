@@ -1,4 +1,4 @@
-package com.eunoia.transactionoutbox.smt
+package org.example.smt
 
 import kotlinx.serialization.json.Json
 import org.apache.kafka.common.config.ConfigDef
