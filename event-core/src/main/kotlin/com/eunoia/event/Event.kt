@@ -5,4 +5,5 @@ interface Event {
     fun getHeaders(): Map<String, String>
     fun getHeader(key: String): String?
     fun putHeader(key: String, value: String)
+    fun acknowledge()
 }
