@@ -19,6 +19,8 @@ kotlin {
 }
 
 dependencies {
+    implementation(project(":event"))
+
     // Kafka Connect API
     implementation("org.apache.kafka:connect-api:3.4.1")
 
