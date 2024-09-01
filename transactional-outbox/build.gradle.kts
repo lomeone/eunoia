@@ -1,8 +1,8 @@
 plugins {
-    id("com.gradleup.shadow") version "8.3.0"
+    id("com.gradleup.shadow")
 }
 
-group = rootProject.group
+group = "${rootProject.group}.transactional.outbox"
 version = "1.0-SNAPSHOT"
 
 java {
@@ -30,8 +30,6 @@ dependencies {
 
     // kotlin serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
-
-    testImplementation(kotlin("test"))
 }
 
 tasks.test {
