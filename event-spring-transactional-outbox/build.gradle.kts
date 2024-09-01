@@ -1,3 +1,8 @@
+group = "${rootProject.group}.event.spring.transactional.outbox"
+version = "1.0-SNAPSHOT"
+
+val springKafkaVersion: String by project
+
 plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
@@ -5,10 +10,6 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.jpa")
 }
-
-group = "${rootProject.group}.event.spring.transactional.outbox"
-version = "1.0-SNAPSHOT"
-
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
@@ -28,6 +29,9 @@ repositories {
 
 dependencies {
     implementation(project(":event-core"))
+
+    // Kafka
+    api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
 
     // DB
     api("org.springframework.boot:spring-boot-starter-data-jpa")

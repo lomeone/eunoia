@@ -4,7 +4,7 @@ rootProject.name = projectName
 pluginManagement {
     val kotlinVersion: String by settings
     val springBootVersion: String by settings
-    val springDependencyManagement: String by settings
+    val springDependencyManagementVersion: String by settings
     val shadowVersion: String by settings
 
     plugins {
@@ -13,7 +13,7 @@ pluginManagement {
         kotlin("kapt") version kotlinVersion
         kotlin("plugin.jpa") version kotlinVersion
         id("org.springframework.boot") version springBootVersion
-        id("io.spring.dependency-management") version springDependencyManagement
+        id("io.spring.dependency-management") version springDependencyManagementVersion
         id("com.gradleup.shadow") version shadowVersion
     }
 }
