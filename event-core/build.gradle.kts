@@ -1,7 +1,7 @@
-plugins {}
-
-group = "${rootProject.group}.exception"
+group = "${rootProject.group}.event"
 version = "1.0-SNAPSHOT"
+
+plugins {}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -14,6 +14,10 @@ java {
 
 kotlin {
     jvmToolchain(21)
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {}

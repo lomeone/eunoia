@@ -15,10 +15,10 @@ allprojects {
     repositories {
         mavenCentral()
     }
-}
 
-dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    dependencies {
+        testImplementation(kotlin("test"))
+    }
 }
 
 tasks.test {
