@@ -32,16 +32,16 @@ class EunoiaTransformation<R : ConnectRecord<R>> : Transformation<R> {
             val jsonValue = Json.parseToJsonElement(afterValue["payload"] as String)
             println("json payload: ${jsonValue}")
 
-            val schema = SchemaBuilder.struct().field("payload", Schema.STRING_SCHEMA).build()
-            val valueStruct = Struct(schema).put("payload", jsonValue.toString())
+//            val schema = SchemaBuilder.struct().field("payload", Schema.STRING_SCHEMA).build()
+//            val valueStruct = Struct(schema).put("payload", jsonValue.toString())
 
             return record.newRecord(
                 afterValue["aggregatetype"] as String,  // 새로운 토픽으로 변경
                 record.kafkaPartition(),                // 원래의 파티션을 유지
                 record.keySchema(),                     // 원래의 키 스키마를 유지
                 record.key(),                           // 원래의 키를 유지
-                schema,                                 // 새로운 값 스키마로 변경
-                valueStruct,                            // 새로운 값
+                null,                       // 새로운 값 스키마로 변경
+                jsonValue.toString(),                   // 새로운 값
                 record.timestamp()                      // 원래의 타임스탬프를 유지
             )
 
