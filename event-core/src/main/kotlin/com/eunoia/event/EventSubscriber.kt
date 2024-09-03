@@ -1,5 +1,7 @@
 package com.eunoia.event
 
+import io.cloudevents.CloudEvent
+
 interface EventSubscriber {
-    fun subscribe(origin: String, handler: (event: Event) -> Unit)
+    fun subscribe(origin: String, handler: (event: CloudEvent) -> Unit)
 }
