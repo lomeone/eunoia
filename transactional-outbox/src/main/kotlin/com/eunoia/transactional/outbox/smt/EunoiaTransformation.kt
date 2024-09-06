@@ -6,6 +6,8 @@ import org.apache.kafka.connect.connector.ConnectRecord
 import org.apache.kafka.connect.data.Schema
 import org.apache.kafka.connect.data.SchemaBuilder
 import org.apache.kafka.connect.data.Struct
+import org.apache.kafka.connect.header.ConnectHeaders
+import org.apache.kafka.connect.header.Header
 import org.apache.kafka.connect.transforms.Transformation
 
 class EunoiaTransformation<R : ConnectRecord<R>> : Transformation<R> {
@@ -32,9 +34,9 @@ class EunoiaTransformation<R : ConnectRecord<R>> : Transformation<R> {
             val jsonValue = Json.parseToJsonElement(afterValue["payload"] as String)
             println("json payload: ${jsonValue}")
 
-//            val schema = SchemaBuilder.struct().field("payload", Schema.STRING_SCHEMA).build()
-//            val valueStruct = Struct(schema).put("payload", jsonValue.toString())
-
+            val headers = ConnectHeaders()
+            headers.addString("header", "test")
+            headers.addString("meta", "test meta")
             return record.newRecord(
                 afterValue["aggregatetype"] as String,  // 새로운 토픽으로 변경
                 record.kafkaPartition(),                // 원래의 파티션을 유지
@@ -42,7 +44,8 @@ class EunoiaTransformation<R : ConnectRecord<R>> : Transformation<R> {
                 record.key(),                           // 원래의 키를 유지
                 null,                       // 새로운 값 스키마로 변경
                 jsonValue.toString(),                   // 새로운 값
-                record.timestamp()                      // 원래의 타임스탬프를 유지
+                record.timestamp(),                      // 원래의 타임스탬프를 유지
+                headers
             )
 
         } catch (e: Exception) {
