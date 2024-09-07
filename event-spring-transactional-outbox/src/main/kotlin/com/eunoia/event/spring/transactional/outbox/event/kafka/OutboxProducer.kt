@@ -14,11 +14,20 @@ class OutboxProducer(
 ) : EventProducer {
     @Transactional
     override fun produce(destination: String, event: CloudEvent) {
+        val metadataKeys = event.extensionNames
+        val metadata: MutableMap<String, Any> = mutableMapOf()
+
+        for (key in metadataKeys) {
+            event.getExtension(key)?.let {
+                metadata.put(key, it)
+            }
+        }
+
         val outbox = kafkaOutboxRepository.save(Outbox(
             topic = destination,
             key = PARTITION_KEY,
             payload = event.toString(),
-            metadata = Json.encodeToString(event)
+            metadata = Json.encodeToString(metadata)
         ))
     }
 }
