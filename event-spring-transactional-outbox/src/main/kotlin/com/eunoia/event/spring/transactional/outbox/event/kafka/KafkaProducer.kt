@@ -1,23 +1,24 @@
 package com.eunoia.event.spring.transactional.outbox.event.kafka
 
-import com.eunoia.event.Event
-import com.eunoia.event.EventPublisher
+import com.eunoia.event.EventProducer
+import io.cloudevents.CloudEvent
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
+
 @Component
-class KafkaPublisher(
+class KafkaProducer(
     private val kafkaOutboxRepository: KafkaOutboxRepository
-) : EventPublisher {
+) : EventProducer {
     @Transactional
-    override fun publish(destination: String, event: Event) {
+    override fun produce(destination: String, event: CloudEvent) {
         val kafkaOutbox = kafkaOutboxRepository.save(KafkaOutbox(
             topic = destination,
             partitionKey = PARTITION_KEY,
-            messageBody = event.getBody(),
-            messageHeaders = Json.encodeToString(event.getHeaders())
+            messageBody = event.data.toString(),
+            messageHeaders = Json.encodeToString(event)
         ))
     }
 }
