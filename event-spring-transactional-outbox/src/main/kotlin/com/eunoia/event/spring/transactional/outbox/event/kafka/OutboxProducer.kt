@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional
 
 
 @Component
-class KafkaProducer(
-    private val kafkaOutboxRepository: KafkaOutboxRepository
+class OutboxProducer(
+    private val kafkaOutboxRepository: OutboxRepository
 ) : EventProducer {
     @Transactional
     override fun produce(destination: String, event: CloudEvent) {
-        val kafkaOutbox = kafkaOutboxRepository.save(KafkaOutbox(
+        val outbox = kafkaOutboxRepository.save(Outbox(
             topic = destination,
-            partitionKey = PARTITION_KEY,
-            messageBody = event.data.toString(),
-            messageHeaders = Json.encodeToString(event)
+            key = PARTITION_KEY,
+            payload = event.toString(),
+            metadata = Json.encodeToString(event)
         ))
     }
 }
