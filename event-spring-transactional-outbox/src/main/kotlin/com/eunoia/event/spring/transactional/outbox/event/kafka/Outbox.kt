@@ -13,7 +13,7 @@ import java.time.LocalDateTime.now
 const val PARTITION_KEY: String = ""
 
 @Entity
-class KafkaOutbox(
+class Outbox(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
