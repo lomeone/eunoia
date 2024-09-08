@@ -1,4 +1,4 @@
-package com.eunoia.event.spring.transactional.outbox.event.kafka
+package com.eunoia.event.spring.transactional.outbox
 
 import com.eunoia.event.EventProducer
 import io.cloudevents.CloudEvent
@@ -22,11 +22,13 @@ class OutboxProducer(
             }
         }
 
-        val outbox = outboxRepository.save(Outbox(
-            topic = destination,
-            key = PARTITION_KEY,
-            payload = event.toString(),
-            metadata = Json.encodeToString(metadata)
-        ))
+        val outbox = outboxRepository.save(
+            Outbox(
+                topic = destination,
+                key = PARTITION_KEY,
+                payload = event.toString(),
+                metadata = Json.encodeToString(metadata)
+            )
+        )
     }
 }

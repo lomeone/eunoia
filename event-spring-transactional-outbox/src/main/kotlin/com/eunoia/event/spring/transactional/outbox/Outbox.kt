@@ -1,4 +1,4 @@
-package com.eunoia.event.spring.transactional.outbox.event.kafka
+package com.eunoia.event.spring.transactional.outbox
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
