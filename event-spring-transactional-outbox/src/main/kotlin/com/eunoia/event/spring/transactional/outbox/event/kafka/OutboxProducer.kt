@@ -7,10 +7,9 @@ import kotlinx.serialization.json.Json
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
-
 @Component
 class OutboxProducer(
-    private val kafkaOutboxRepository: OutboxRepository
+    private val outboxRepository: OutboxRepository
 ) : EventProducer {
     @Transactional
     override fun produce(destination: String, event: CloudEvent) {
@@ -23,7 +22,7 @@ class OutboxProducer(
             }
         }
 
-        val outbox = kafkaOutboxRepository.save(Outbox(
+        val outbox = outboxRepository.save(Outbox(
             topic = destination,
             key = PARTITION_KEY,
             payload = event.toString(),
