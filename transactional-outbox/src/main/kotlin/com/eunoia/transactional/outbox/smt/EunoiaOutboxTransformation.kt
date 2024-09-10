@@ -19,6 +19,10 @@ import org.apache.kafka.connect.data.Struct
 import org.apache.kafka.connect.header.ConnectHeaders
 import org.apache.kafka.connect.transforms.Transformation
 import org.slf4j.LoggerFactory
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.LocalDateTime.now
+import java.time.ZoneId
 
 class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
 
@@ -41,7 +45,8 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
 
             val event = generateEvent(afterValue)
 
-            log.info("record.value.after.created_at: {}, record.timestamp: {}", afterValue["created_at"], record.timestamp())
+            log.info("record.value.after.created_at: {}, SMT currentTime: {}",
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(afterValue["created_at"] as Long), ZoneId.systemDefault()), now())
 
             return record.newRecord(
                 event.topic,            // 새로운 토픽으로 변경
