@@ -1,5 +1,6 @@
 package com.eunoia.transactional.outbox.smt
 
+import com.eunoia.transactional.outbox.smt.event.Event
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -31,45 +32,30 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
 
     override fun apply(record: R): R {
         try {
-            log.info("record.value: ${record.value()}")
+            verifyEventRecord(record)
 
+            log.debug("record.value: {}", record.value())
             val values = record.value() as Struct
-
-            log.info("record.value.after: ${values["after"]}")
-
+            log.debug("record.value.after: {}", values["after"])
             val afterValue = values["after"] as Struct
 
-            log.info("record.value.after.topic: ${afterValue["topic"]}, ${afterValue["topic"]::class}")
-            log.info("record.value.after.key: ${afterValue["key"]}, ${afterValue["key"]::class}")
-            log.info("record.value.after.payload: ${afterValue["payload"]}, ${afterValue["payload"]::class}")
-            log.info("record.value.after.metadata: ${afterValue["metadata"]}, ${afterValue["metadata"]::class}")
-
-            val topic = afterValue["topic"] as String
-            val key: String = afterValue["key"] as String
-            val value = Json.parseToJsonElement(afterValue["payload"] as String)
-
-            val metadata = Json.parseToJsonElement(afterValue["metadata"] as String)
-            val headerData = metadata.toMap()
-
-            val headers = generateHeader(headerData)
-            log.info("topic: ${topic}, key: ${key}, value: ${value}, headers: ${headers}")
+            val event = generateEvent(afterValue)
 
             return record.newRecord(
-                topic,                  // 새로운 토픽으로 변경
-                null,                   // kafka의 기본 파티셔닝 전략 사용
-                null,                   // 키 스키마 사용하지 않기 때문에 제거
-                key,                    // 새로운 키로 변경
-                null,                   // 값 스키마 사용하지 않기 때문에 제거
-                value.toString(),       // 새로운 값
+                event.topic,            // 새로운 토픽으로 변경
+                null,           // kafka의 기본 파티셔닝 전략 사용
+                null,           // 키 스키마 사용하지 않기 때문에 제거
+                event.key,              // 새로운 키로 변경
+                null,           // 값 스키마 사용하지 않기 때문에 제거
+                event.value,            // 새로운 값
                 record.timestamp(),     // 원래의 타임스탬프를 유지
-                headers                 // kafka header
+                event.headers           // kafka header
             )
-
         } catch (e: Exception) {
-            log.error(e.toString())
+            log.error(e.message)
 
             return record.newRecord(
-                record.topic(),             // 원래의 토픽을 유지
+                record.topic(),             // 새로운 토픽으로 변경
                 record.kafkaPartition(),    // 원래의 파티션을 유지
                 record.keySchema(),         // 원래의 키 스키마를 유지
                 record.key(),               // 원래의 키를 유지
@@ -78,6 +64,38 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
                 record.timestamp()          // 원래의 타임스탬프를 유지
             )
         }
+    }
+
+    private fun verifyEventRecord(record: R) {
+        record.value() == null && throw Exception("record value is null")
+
+        val value = record.value() as Struct
+
+        value["after"] == null && throw Exception("after record value is null")
+    }
+
+    private fun generateEvent(valueStruct: Struct): Event {
+        log.debug("record.value.after.topic: {}, {}", valueStruct["topic"], valueStruct["topic"]::class)
+        log.debug("record.value.after.key: {}, {}", valueStruct["key"], valueStruct["key"]::class)
+        log.debug("record.value.after.payload: {}, {}", valueStruct["payload"], valueStruct["payload"]::class)
+        log.debug("record.value.after.metadata: {}, {}", valueStruct["metadata"], valueStruct["metadata"]::class)
+
+        val topic = valueStruct["topic"] as String
+        val key: String = valueStruct["key"] as String
+        val value = Json.parseToJsonElement(valueStruct["payload"] as String)
+
+        val metadata = Json.parseToJsonElement(valueStruct["metadata"] as String)
+        val headerData = metadata.toMap()
+
+        val headers = generateHeader(headerData)
+        log.debug("topic: {}, key: {}, value: {}, headers: {}", topic, key, value, headers)
+
+        return Event(
+            topic = topic,
+            key = key,
+            value = value.toString(),
+            headers = headers
+        )
     }
 
     private fun generateHeader(headerData: Map<String, Any?>): ConnectHeaders {
