@@ -41,6 +41,8 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
 
             val event = generateEvent(afterValue)
 
+            log.info("record.value.after.created_at: {}, record.timestamp: {}", afterValue["created_at"], record.timestamp())
+
             return record.newRecord(
                 event.topic,            // 새로운 토픽으로 변경
                 null,           // kafka의 기본 파티셔닝 전략 사용
