@@ -20,7 +20,7 @@ class Outbox(
     val topic: String,
     val key: String,
     val payload: String,
-    val metadata: String
+    val attributes: String
 ) {
     @CreatedDate
     @Column(updatable = false)

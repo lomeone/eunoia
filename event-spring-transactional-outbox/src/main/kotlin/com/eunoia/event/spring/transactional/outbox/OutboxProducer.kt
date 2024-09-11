@@ -14,11 +14,11 @@ class OutboxProducer(
     @Transactional
     override fun produce(destination: String, event: CloudEvent) {
         val metadataKeys = event.extensionNames
-        val metadata: MutableMap<String, Any> = mutableMapOf()
+        val attributes: MutableMap<String, Any> = mutableMapOf()
 
         for (key in metadataKeys) {
             event.getExtension(key)?.let {
-                metadata.put(key, it)
+                attributes.put(key, it)
             }
         }
 
@@ -27,7 +27,7 @@ class OutboxProducer(
                 topic = destination,
                 key = PARTITION_KEY,
                 payload = event.toString(),
-                metadata = Json.encodeToString(metadata)
+                attributes = Json.encodeToString(attributes)
             )
         )
     }
