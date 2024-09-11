@@ -85,14 +85,14 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
         log.debug("record.value.after.topic: {}, {}", valueStruct["topic"], valueStruct["topic"]::class)
         log.debug("record.value.after.key: {}, {}", valueStruct["key"], valueStruct["key"]::class)
         log.debug("record.value.after.payload: {}, {}", valueStruct["payload"], valueStruct["payload"]::class)
-        log.debug("record.value.after.metadata: {}, {}", valueStruct["metadata"], valueStruct["metadata"]::class)
+        log.debug("record.value.after.attributes: {}, {}", valueStruct["attributes"], valueStruct["attributes"]::class)
 
         val topic = valueStruct["topic"] as String
         val key: String = valueStruct["key"] as String
         val value = Json.parseToJsonElement(valueStruct["payload"] as String)
 
-        val metadata = Json.parseToJsonElement(valueStruct["metadata"] as String)
-        val headerData = metadata.toMap()
+        val attributes = Json.parseToJsonElement(valueStruct["attributes"] as String)
+        val headerData = attributes.toMap()
 
         val headers = generateHeader(headerData)
         log.debug("topic: {}, key: {}, value: {}, headers: {}", topic, key, value, headers)
