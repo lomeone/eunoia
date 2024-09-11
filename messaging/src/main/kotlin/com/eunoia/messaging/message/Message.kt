@@ -1,9 +1,8 @@
-package com.eunoia.event
+package com.eunoia.messaging.message
 
-interface Event {
+interface Message {
     fun getBody(): String
-    fun getHeaders(): Map<String, String>
+    fun getHeader(): Map<String, String>
     fun getHeader(key: String): String?
     fun putHeader(key: String, value: String)
-    fun acknowledge()
 }

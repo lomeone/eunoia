@@ -1,6 +1,8 @@
 group = "${rootProject.group}.event"
 version = "1.0-SNAPSHOT"
 
+val cloudeventsVersion: String by project
+
 plugins {}
 
 java {
@@ -20,7 +22,10 @@ repositories {
     mavenCentral()
 }
 
-dependencies {}
+dependencies {
+    // cloud event
+    api("io.cloudevents:cloudevents-kafka:$cloudeventsVersion")
+}
 
 tasks.test {
     useJUnitPlatform()
