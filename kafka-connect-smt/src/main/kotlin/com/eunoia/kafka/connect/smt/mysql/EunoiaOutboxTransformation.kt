@@ -1,6 +1,6 @@
-package com.eunoia.transactional.outbox.smt
+package com.eunoia.kafka.connect.smt.mysql
 
-import com.eunoia.transactional.outbox.smt.event.KafkaEvent
+import com.eunoia.com.eunoia.kafka.connect.smt.common.KafkaEvent
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -24,7 +24,7 @@ import java.time.LocalDateTime
 import java.time.LocalDateTime.now
 import java.time.ZoneId
 
-class EunoiaMySQLOutboxKafkaTransformation<R : ConnectRecord<R>> : Transformation<R> {
+class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 
@@ -46,7 +46,8 @@ class EunoiaMySQLOutboxKafkaTransformation<R : ConnectRecord<R>> : Transformatio
             val event = generateEvent(afterValue)
 
             log.info("record.value.after.created_at: {}, SMT currentTime: {}",
-                LocalDateTime.ofInstant(Instant.ofEpochMilli(afterValue["created_at"] as Long), ZoneId.systemDefault()), now())
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(afterValue["created_at"] as Long), ZoneId.systemDefault()), now()
+            )
 
             return record.newRecord(
                 event.topic,            // 새로운 토픽으로 변경

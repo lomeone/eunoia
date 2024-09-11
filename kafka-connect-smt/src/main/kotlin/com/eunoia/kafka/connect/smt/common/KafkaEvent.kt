@@ -1,4 +1,4 @@
-package com.eunoia.transactional.outbox.smt.event
+package com.eunoia.com.eunoia.kafka.connect.smt.common
 
 import org.apache.kafka.connect.header.ConnectHeaders
 
