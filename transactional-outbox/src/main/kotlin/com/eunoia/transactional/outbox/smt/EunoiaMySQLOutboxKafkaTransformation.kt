@@ -1,6 +1,6 @@
 package com.eunoia.transactional.outbox.smt
 
-import com.eunoia.transactional.outbox.smt.event.Event
+import com.eunoia.transactional.outbox.smt.event.KafkaEvent
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -81,7 +81,7 @@ class EunoiaMySQLOutboxKafkaTransformation<R : ConnectRecord<R>> : Transformatio
         value["after"] == null && throw Exception("after record value is null")
     }
 
-    private fun generateEvent(valueStruct: Struct): Event {
+    private fun generateEvent(valueStruct: Struct): KafkaEvent {
         log.debug("record.value.after.topic: {}, {}", valueStruct["topic"], valueStruct["topic"]::class)
         log.debug("record.value.after.key: {}, {}", valueStruct["key"], valueStruct["key"]::class)
         log.debug("record.value.after.payload: {}, {}", valueStruct["payload"], valueStruct["payload"]::class)
@@ -97,7 +97,7 @@ class EunoiaMySQLOutboxKafkaTransformation<R : ConnectRecord<R>> : Transformatio
         val headers = generateHeader(headerData)
         log.debug("topic: {}, key: {}, value: {}, headers: {}", topic, key, value, headers)
 
-        return Event(
+        return KafkaEvent(
             topic = topic,
             key = key,
             value = value.toString(),
