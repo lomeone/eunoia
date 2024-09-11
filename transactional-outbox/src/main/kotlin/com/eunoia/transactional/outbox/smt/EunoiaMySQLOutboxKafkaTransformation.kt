@@ -24,7 +24,7 @@ import java.time.LocalDateTime
 import java.time.LocalDateTime.now
 import java.time.ZoneId
 
-class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
+class EunoiaMySQLOutboxKafkaTransformation<R : ConnectRecord<R>> : Transformation<R> {
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 
