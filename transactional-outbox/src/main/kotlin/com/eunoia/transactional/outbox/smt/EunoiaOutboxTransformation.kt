@@ -62,13 +62,13 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
             log.error(e.message)
 
             return record.newRecord(
-                record.topic(),             // 새로운 토픽으로 변경
-                record.kafkaPartition(),    // 원래의 파티션을 유지
-                record.keySchema(),         // 원래의 키 스키마를 유지
-                record.key(),               // 원래의 키를 유지
-                record.valueSchema(),       // 값 스키마를 유지
-                record.value(),             // 값 (이 경우 변환됨)
-                record.timestamp()          // 원래의 타임스탬프를 유지
+                generateDeadLetterTopicName(record),    // 새로운 토픽으로 변경
+                record.kafkaPartition(),                // 원래의 파티션을 유지
+                record.keySchema(),                     // 원래의 키 스키마를 유지
+                record.key(),                           // 원래의 키를 유지
+                record.valueSchema(),                   // 값 스키마를 유지
+                record.value(),                         // 값 (이 경우 변환됨)
+                record.timestamp()                      // 원래의 타임스탬프를 유지
             )
         }
     }
@@ -105,6 +105,24 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
         )
     }
 
+    private fun JsonElement.toMap(): Map<String, Any?> = when (this) {
+        is JsonObject -> this.mapValues { it.value.toAny() }
+        else -> throw IllegalStateException("Expected a JsonObject but was $this")
+    }
+
+    private fun JsonElement.toAny(): Any? = when (this) {
+        is JsonPrimitive -> when {
+            this.isString -> this.content
+            this.booleanOrNull != null -> this.boolean
+            this.longOrNull != null -> this.long
+            this.doubleOrNull != null -> this.double
+            else -> this.content
+        }
+        is JsonArray -> this.map { it.toAny() }
+        is JsonObject -> this.toMap()
+        JsonNull -> null
+    }
+
     private fun generateHeader(headerData: Map<String, Any?>): ConnectHeaders {
         val headers = ConnectHeaders()
 
@@ -129,21 +147,13 @@ class EunoiaOutboxTransformation<R : ConnectRecord<R>> : Transformation<R> {
         return headers
     }
 
-    private fun JsonElement.toMap(): Map<String, Any?> = when (this) {
-        is JsonObject -> this.mapValues { it.value.toAny() }
-        else -> throw IllegalStateException("Expected a JsonObject but was $this")
-    }
-
-    private fun JsonElement.toAny(): Any? = when (this) {
-        is JsonPrimitive -> when {
-            this.isString -> this.content
-            this.booleanOrNull != null -> this.boolean
-            this.longOrNull != null -> this.long
-            this.doubleOrNull != null -> this.double
-            else -> this.content
+    private fun generateDeadLetterTopicName(record: R): String {
+        try {
+            val value = record.value() as Struct
+            val topic = value["topic"] as String
+            return "$topic-DLQ"
+        } catch(e: Exception) {
+            return "default-DLQ"
         }
-        is JsonArray -> this.map { it.toAny() }
-        is JsonObject -> this.toMap()
-        JsonNull -> null
     }
 }
