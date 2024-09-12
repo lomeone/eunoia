@@ -4,12 +4,14 @@ import com.eunoia.event.EventProducer
 import io.cloudevents.CloudEvent
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
 class OutboxProducer(
-    private val outboxRepository: OutboxRepository
+    private val outboxRepository: OutboxRepository,
+    private val applicationEventPublisher: ApplicationEventPublisher
 ) : EventProducer {
     @Transactional
     override fun produce(destination: String, event: CloudEvent) {
@@ -30,5 +32,7 @@ class OutboxProducer(
                 attributes = Json.encodeToString(attributes)
             )
         )
+
+        applicationEventPublisher.publishEvent(outbox)
     }
 }
