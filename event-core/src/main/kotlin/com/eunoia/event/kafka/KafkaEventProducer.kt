@@ -11,7 +11,7 @@ import java.util.*
 class KafkaEventProducer(
     brokerServers: String
 ) : EventProducer {
-    val kafkaProducer: KafkaProducer<String, CloudEvent>
+    private val kafkaProducer: KafkaProducer<String, CloudEvent>
     init {
         val props = Properties()
         props["bootstrap.servers"] = brokerServers
@@ -47,5 +47,9 @@ class KafkaEventProducer(
         }
 
         return headers
+    }
+
+    fun closeProducer() {
+        kafkaProducer.close()
     }
 }
