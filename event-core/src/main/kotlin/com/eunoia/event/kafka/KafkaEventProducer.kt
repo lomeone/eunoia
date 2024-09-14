@@ -37,9 +37,9 @@ class KafkaEventProducer(
 
     private fun generateHeader(event: CloudEvent): RecordHeaders {
         val headers = RecordHeaders()
-        val headerData = event.attributeNames
+        val headerKeys = event.attributeNames
 
-        for (key in headerData) {
+        for (key in headerKeys) {
             val value = event.getAttribute(key)
             if (value != null ) {
                 headers.add(key, value.toString().toByteArray())
