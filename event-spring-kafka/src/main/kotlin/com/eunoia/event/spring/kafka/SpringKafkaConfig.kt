@@ -10,10 +10,11 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 
+const val PARTITION_KEY = ""
+
 @EnableKafka
 @Configuration
 class SpringKafkaConfig {
-
 
     @Bean
     fun kafkaListenerContainerFactory(consumerFactory: ConsumerFactory<Int, String>) =

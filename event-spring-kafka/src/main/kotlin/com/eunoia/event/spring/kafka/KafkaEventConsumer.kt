@@ -8,4 +8,3 @@ class KafkaEventConsumer : EventConsumer {
         TODO("Not yet implemented")
     }
 }
-
