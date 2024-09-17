@@ -3,7 +3,7 @@ package org.example.com.eunoia.exception
 open class EunioaException(
     message: String,
     val errorCode: ErrorCode,
-    val detail: Map<String, Any> = mapOf(),
+    val detail: ExceptionDetail,
     cause: Throwable? = null
 ) : RuntimeException(message, cause)
 
@@ -18,3 +18,7 @@ enum class ExceptionCategory {
     FORBIDDEN,
     NOT_FOUND,
 }
+
+data class ExceptionDetail(
+    val details: Map<String, Any>
+)
