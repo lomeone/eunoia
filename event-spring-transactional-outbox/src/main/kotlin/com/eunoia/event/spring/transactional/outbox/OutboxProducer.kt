@@ -4,21 +4,23 @@ import com.eunoia.event.EventProducer
 import io.cloudevents.CloudEvent
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
 class OutboxProducer(
-    private val outboxRepository: OutboxRepository
+    private val outboxRepository: OutboxRepository,
+    private val applicationEventPublisher: ApplicationEventPublisher
 ) : EventProducer {
     @Transactional
     override fun produce(destination: String, event: CloudEvent) {
         val metadataKeys = event.extensionNames
-        val metadata: MutableMap<String, Any> = mutableMapOf()
+        val attributes: MutableMap<String, Any> = mutableMapOf()
 
         for (key in metadataKeys) {
             event.getExtension(key)?.let {
-                metadata.put(key, it)
+                attributes.put(key, it)
             }
         }
 
@@ -27,8 +29,10 @@ class OutboxProducer(
                 topic = destination,
                 key = PARTITION_KEY,
                 payload = event.toString(),
-                metadata = Json.encodeToString(metadata)
+                attributes = Json.encodeToString(attributes)
             )
         )
+
+        applicationEventPublisher.publishEvent(outbox)
     }
 }

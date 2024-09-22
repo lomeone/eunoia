@@ -3,7 +3,9 @@ version = "1.0-SNAPSHOT"
 
 val springKafkaVersion: String by project
 
-plugins {}
+plugins {
+    kotlin("plugin.spring")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
