@@ -1,6 +1,6 @@
-plugins {}
-
 version = "0.0.1"
+
+plugins {}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
