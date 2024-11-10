@@ -1,6 +1,6 @@
-plugins {}
-
 version = "0.0.1"
+
+val springWebVersion: String by project
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -15,7 +15,15 @@ kotlin {
     jvmToolchain(21)
 }
 
-dependencies {}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(":exception"))
+
+    implementation("org.springframework:spring-web:$springWebVersion")
+}
 
 tasks.test {
     useJUnitPlatform()

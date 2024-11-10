@@ -1,5 +1,4 @@
-group = "${rootProject.group}.event"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 val cloudeventsVersion: String by project
 
