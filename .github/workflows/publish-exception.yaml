@@ -1,0 +1,12 @@
+name: Publish exception module to Github Package
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'exception/**'
+
+jobs:
+  publish:
+    uses: ./.github/workflows/package-publish.yaml
+    with:
+      module: 'exception'

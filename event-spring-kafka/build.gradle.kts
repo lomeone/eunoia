@@ -1,5 +1,4 @@
-group = "${rootProject.group}.event.spring.kafka"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 val springKafkaVersion: String by project
 
