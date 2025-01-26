@@ -1,4 +1,4 @@
-package org.example.com.lomeone.eunoia.exception
+package com.lomeone.eunoia.exception
 
 open class EunioaException(
     message: String,
