@@ -17,4 +17,6 @@ kotlin {
     jvmToolchain(21)
 }
 
-dependencies {}
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3")
+}
