@@ -1,7 +1,7 @@
 package org.example.com.eunoia.spring.web.rest
 
-import org.example.com.lomeone.eunoia.exception.EunioaException
-import org.example.com.lomeone.eunoia.exception.ExceptionCategory
+import com.lomeone.eunoia.exception.EunioaException
+import com.lomeone.eunoia.exception.ExceptionCategory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
