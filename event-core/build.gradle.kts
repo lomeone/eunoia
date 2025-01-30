@@ -25,7 +25,3 @@ dependencies {
     // cloud event
     api("io.cloudevents:cloudevents-kafka:$cloudeventsVersion")
 }
-
-tasks.test {
-    useJUnitPlatform()
-}

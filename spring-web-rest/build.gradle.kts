@@ -24,7 +24,3 @@ dependencies {
 
     implementation("org.springframework:spring-web:$springWebVersion")
 }
-
-tasks.test {
-    useJUnitPlatform()
-}
