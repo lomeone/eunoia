@@ -16,7 +16,3 @@ kotlin {
 }
 
 dependencies {}
-
-tasks.test {
-    useJUnitPlatform()
-}

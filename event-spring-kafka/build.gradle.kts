@@ -28,10 +28,4 @@ dependencies {
 
     // Kafka
     api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

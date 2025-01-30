@@ -31,7 +31,3 @@ dependencies {
     // slf4j log
     implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
 }
-
-tasks.test {
-    useJUnitPlatform()
-}

@@ -3,6 +3,7 @@ val groupName: String by project
 plugins {
     kotlin("jvm")
     `maven-publish`
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 allprojects {
@@ -33,41 +34,6 @@ subprojects {
     }
 
     publishing {
-//        publications {
-//            create<MavenPublication>("mavenJava") {
-//                from(components["java"])
-//
-//                // POM 메타데이터 설정
-//                pom {
-//                    name.set("eunoia")
-//                    description.set("라이브러리 설명")
-//                    url.set("https://github.com/comstering/eunoia")
-//
-//                    licenses {
-//                        license {
-//                            name.set("MIT License")
-//                            url.set("https://opensource.org/licenses/MIT")
-//                            distribution.set("repo")
-//                        }
-//                    }
-//
-//                    developers {
-//                        developer {
-//                            id.set("comstering")
-//                            name.set("comstering")
-//                            email.set("coms1101@gmail.com")
-//                        }
-//                    }
-//
-//                    scm {
-//                        connection.set("scm:git:git://github.com/comstering/eunoia.git")
-//                        developerConnection.set("scm:git:ssh://github.com:comstering/eunoia.git")
-//                        url.set("https://github.com/comstering/eunoia")
-//                    }
-//                }
-//            }
-//        }
-
         repositories {
             maven {
                 name = "GitHubPackages"
@@ -84,11 +50,8 @@ subprojects {
             }
         }
     }
-}
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(21)
+    tasks.test {
+        useJUnitPlatform()
+    }
 }

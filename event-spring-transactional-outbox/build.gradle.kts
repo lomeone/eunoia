@@ -42,10 +42,4 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     kapt("jakarta.persistence:jakarta.persistence-api")
     kapt("jakarta.annotation:jakarta.annotation-api")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

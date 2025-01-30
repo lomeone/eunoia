@@ -1,8 +1,8 @@
 version = "0.0.1"
 
-val cloudeventsVersion: String by project
-
-plugins {}
+plugins {
+    id("org.jetbrains.kotlin.plugin.serialization")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -17,11 +17,6 @@ kotlin {
     jvmToolchain(21)
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    // cloud event
-    api("io.cloudevents:cloudevents-kafka:$cloudeventsVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3")
 }
