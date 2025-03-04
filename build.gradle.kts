@@ -1,5 +1,7 @@
 val groupName: String by project
 
+val kotestVersion: String by project
+
 plugins {
     kotlin("jvm")
     `maven-publish`
@@ -19,7 +21,10 @@ allprojects {
     }
 
     dependencies {
-        testImplementation(kotlin("test"))
+
+        // kotest
+        testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+        testImplementation("io.kotest:kotest-property:$kotestVersion")
     }
 }
 
