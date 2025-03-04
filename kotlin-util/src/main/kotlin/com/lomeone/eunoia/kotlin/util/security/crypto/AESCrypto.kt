@@ -23,14 +23,16 @@ object AESCrypto : Crypto {
     }
 
     override fun decrypt(cipherText: String, key: String): String {
-        val decodedData = Base64.getDecoder().decode(cipherText)
-
-        val iv = IvParameterSpec(decodedData.copyOfRange(0, IV_SIZE))
-        val encryptedData = decodedData.copyOfRange(IV_SIZE, decodedData.size)
+        val (iv, encryptedData) = separateIVAndCipherText(cipherText)
 
         val cipher = Cipher.getInstance(ALGORITHM)
         cipher.init(Cipher.DECRYPT_MODE, getKeySpec(key, "AES"), iv)
 
         return String(cipher.doFinal(encryptedData))
+    }
+
+    private fun separateIVAndCipherText(cipherText: String): Pair<IvParameterSpec, ByteArray> {
+        val decodedData = Base64.getDecoder().decode(cipherText)
+        return Pair(IvParameterSpec(decodedData.copyOfRange(0, IV_SIZE)), decodedData.copyOfRange(IV_SIZE, decodedData.size))
     }
 }
