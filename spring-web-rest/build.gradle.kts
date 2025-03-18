@@ -2,7 +2,7 @@ val springWebRestVersion: String by project
 
 val springWebVersion: String by project
 
-version =springWebRestVersion
+version = springWebRestVersion
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
