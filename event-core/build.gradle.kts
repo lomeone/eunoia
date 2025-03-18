@@ -19,10 +19,6 @@ kotlin {
     jvmToolchain(21)
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     // cloud event
     api("io.cloudevents:cloudevents-kafka:$cloudeventsVersion")
