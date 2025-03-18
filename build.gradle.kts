@@ -10,7 +10,6 @@ plugins {
 
 allprojects {
     group = groupName
-    version = "1.0-SNAPSHOT"
 
     apply {
         plugin("kotlin")
@@ -42,7 +41,7 @@ subprojects {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/lomeone/eunoia") // yourusername 및 your-repo를 실제 GitHub 사용자명 및 저장소명으로 변경
+                url = uri("https://maven.pkg.github.com/lomeone/eunoia")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
                     password = System.getenv("GITHUB_TOKEN")

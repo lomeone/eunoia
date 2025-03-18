@@ -1,4 +1,6 @@
-version = "0.0.1"
+val kotlinUtilVersion: String by project
+
+version = kotlinUtilVersion
 
 plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
@@ -19,4 +21,7 @@ kotlin {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3")
+
+    implementation(platform("aws.sdk.kotlin:bom:1.3.112"))
+    implementation("aws.sdk.kotlin:kms")
 }

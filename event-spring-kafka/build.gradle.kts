@@ -1,6 +1,8 @@
-version = "0.0.1"
+val eventSpringKafkaVersion: String by project
 
 val springKafkaVersion: String by project
+
+version = eventSpringKafkaVersion
 
 plugins {
     kotlin("plugin.spring")
