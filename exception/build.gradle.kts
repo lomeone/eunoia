@@ -1,4 +1,6 @@
-version = "0.0.2"
+val exceptionVersion: String by project
+
+version = exceptionVersion
 
 plugins {}
 
@@ -16,7 +18,3 @@ kotlin {
 }
 
 dependencies {}
-
-tasks.test {
-    useJUnitPlatform()
-}

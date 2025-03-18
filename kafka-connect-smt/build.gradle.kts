@@ -1,8 +1,10 @@
-version = "0.0.1"
+val kafkaConnectSmtVersion: String by project
 
 val kafkaConnectVersion: String by project
 val kotlinSerializationVersion: String by project
 val slf4jApiVersion: String by project
+
+version = kafkaConnectSmtVersion
 
 plugins {
     id("com.gradleup.shadow")
@@ -30,8 +32,4 @@ dependencies {
 
     // slf4j log
     implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

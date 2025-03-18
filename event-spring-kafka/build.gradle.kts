@@ -1,6 +1,8 @@
-version = "0.0.1"
+val eventSpringKafkaVersion: String by project
 
 val springKafkaVersion: String by project
+
+version = eventSpringKafkaVersion
 
 plugins {
     kotlin("plugin.spring")
@@ -28,10 +30,4 @@ dependencies {
 
     // Kafka
     api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

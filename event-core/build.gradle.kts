@@ -1,6 +1,8 @@
-version = "0.0.1"
+val eventCoreVersion: String by project
 
 val cloudeventsVersion: String by project
+
+version = eventCoreVersion
 
 plugins {}
 
@@ -24,8 +26,4 @@ repositories {
 dependencies {
     // cloud event
     api("io.cloudevents:cloudevents-kafka:$cloudeventsVersion")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

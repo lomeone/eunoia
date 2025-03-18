@@ -1,7 +1,8 @@
-version = "0.0.1"
-
+val eventSpringTransactionOutboxVersion: String by project
 val springKafkaVersion: String by project
 val kotlinxSerializationJsonVersion: String by project
+
+version = eventSpringTransactionOutboxVersion
 
 plugins {
     id("org.springframework.boot")
@@ -42,10 +43,4 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     kapt("jakarta.persistence:jakarta.persistence-api")
     kapt("jakarta.annotation:jakarta.annotation-api")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
