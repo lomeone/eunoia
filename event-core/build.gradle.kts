@@ -1,6 +1,8 @@
-version = "0.0.1"
+val eventCoreVersion: String by project
 
 val cloudeventsVersion: String by project
+
+version = eventCoreVersion
 
 plugins {}
 

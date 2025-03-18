@@ -1,4 +1,6 @@
-version = "0.0.1"
+val springWebDgsVersion: String by project
+
+version = springWebDgsVersion
 
 plugins {}
 
