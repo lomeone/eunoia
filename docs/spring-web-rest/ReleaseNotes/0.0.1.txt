@@ -1,0 +1,5 @@
+spring-web-rest v0.0.1 Release Notes
+====================================
+
+* Initial release
+1. Add spring-web-rest module
