@@ -1,4 +1,4 @@
-name: Publish exception module to Github Package
+name: Publish spring-web-rest module to Github Package
 on:
   push:
     branches: [main]
