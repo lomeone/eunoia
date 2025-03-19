@@ -1,0 +1,8 @@
+spring-web-rest v0.0.2 Release Notes
+====================================
+
+Fixes since v0.0.1
+==================
+
+* New feature
+  1. Add EunoiaControlAdviceConfiguration to AutoConfiguration.imports
