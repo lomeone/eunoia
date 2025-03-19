@@ -1,4 +1,4 @@
-package org.example.com.eunoia.spring.web.rest
+package com.lomeone.eunoia.spring.web.rest
 
 import com.lomeone.eunoia.exception.EunioaException
 import com.lomeone.eunoia.exception.ExceptionCategory
