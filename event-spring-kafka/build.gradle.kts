@@ -21,10 +21,6 @@ kotlin {
     jvmToolchain(21)
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(project(":event-core"))
 

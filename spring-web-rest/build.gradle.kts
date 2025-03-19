@@ -1,6 +1,6 @@
 val springWebRestVersion: String by project
 
-val springWebVersion: String by project
+val springFrameworkVersion: String by project
 
 version = springWebRestVersion
 
@@ -17,12 +17,9 @@ kotlin {
     jvmToolchain(21)
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(project(":exception"))
 
-    implementation("org.springframework:spring-web:$springWebVersion")
+    implementation("org.springframework:spring-web:$springFrameworkVersion")
+    implementation("org.springframework:spring-context:$springFrameworkVersion")
 }
