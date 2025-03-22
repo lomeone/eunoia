@@ -13,10 +13,15 @@ data class ErrorCode(
 )
 
 enum class ExceptionCategory {
+    // Client errors
     BAD_REQUEST,
     UNAUTHORIZED,
     FORBIDDEN,
     NOT_FOUND,
+
+    // Server errors
+    INTERNAL_SERVER_ERROR,
+    SERVICE_UNAVAILABLE
 }
 
 data class ExceptionDetail(
