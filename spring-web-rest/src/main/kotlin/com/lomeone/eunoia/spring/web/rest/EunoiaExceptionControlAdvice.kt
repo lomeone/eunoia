@@ -28,6 +28,8 @@ class EunoiaExceptionControlAdvice {
             ExceptionCategory.UNAUTHORIZED -> HttpStatus.UNAUTHORIZED
             ExceptionCategory.FORBIDDEN -> HttpStatus.FORBIDDEN
             ExceptionCategory.NOT_FOUND -> HttpStatus.NOT_FOUND
+            ExceptionCategory.INTERNAL_SERVER_ERROR -> HttpStatus.INTERNAL_SERVER_ERROR
+            ExceptionCategory.SERVICE_UNAVAILABLE -> HttpStatus.SERVICE_UNAVAILABLE
         }
 }
 
