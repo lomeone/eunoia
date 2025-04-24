@@ -20,6 +20,8 @@ kotlin {
 }
 
 dependencies {
+    implementation(project(":exception"))
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3")
 
     implementation(platform("aws.sdk.kotlin:bom:1.3.112"))
