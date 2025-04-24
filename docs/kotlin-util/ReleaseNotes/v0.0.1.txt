@@ -1,0 +1,8 @@
+kotlin-util v0.0.1 Release Notes
+================================
+
+* Initial release
+1. Add exception module
+2. Implement CryptoUtil
+3. Implement PasswordUtil
+4. Implement StringUtil
