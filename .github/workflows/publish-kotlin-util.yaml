@@ -1,10 +1,10 @@
-name: Publish exception module to Github Package
+name: Publish kotlin-util module to Github Package
 
 on:
   push:
     branches: [main]
     paths:
-      - 'exception/**'
+      - 'kotlin-util/**'
 
 jobs:
   publish:
@@ -13,4 +13,4 @@ jobs:
       packages: write
     uses: ./.github/workflows/package-publish.yaml
     with:
-      module: 'exception'
+      module: 'kotlin-util'

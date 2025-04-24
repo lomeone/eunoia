@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop, feature/** ]
+  pull_request:
+    branches: [ main, develop ]
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  packages: read    # This is required for installing dependencies
+
+jobs:
+  test:
+    name: Gradle Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gradle test
+        uses: lomeone/github-action/gradle/test@main
+        with:
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
+          coveralls-token: ${{ secrets.COVERALLS_TOKEN }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
