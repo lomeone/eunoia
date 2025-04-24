@@ -31,6 +31,11 @@ allprojects {
         testImplementation("io.kotest:kotest-property:$kotestVersion")
     }
 
+    tasks.test {
+        useJUnitPlatform()
+        finalizedBy(tasks.koverVerify, tasks.koverHtmlReport, tasks.koverXmlReport)
+    }
+
     kover {
         reports {
             total {
@@ -85,4 +90,19 @@ dependencies {
     kover(project(":kotlin-util"))
     kover(project(":spring-web-dgs"))
     kover(project(":spring-web-rest"))
+}
+
+coveralls {
+    jacocoReportPath = "${projectDir}/build/reports/kover/report.xml"
+    sourceDirs = subprojects.map { it.sourceSets.main.get().allSource.srcDirs.toList() }
+        .toList().flatten().map { relativePath(it) }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "lomeone_eunoia")
+        property("sonar.organization", "lomeone")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${projectDir}/build/reports/kover/report.xml")
+    }
 }
