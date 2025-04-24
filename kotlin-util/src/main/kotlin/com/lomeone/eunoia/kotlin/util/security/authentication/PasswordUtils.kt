@@ -14,7 +14,7 @@ object PasswordUtils {
     }
 
     private fun checkPasswordFormatValid(password: String) {
-        val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\$@\$!%*?&])[A-Za-z\\d\$@!%*?&]{10,}")
+        val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\$@!%*?&])[A-Za-z\\d\$@!%*?&]{10,}")
         !regex.matches(password) && throw PasswordInvalidException(mapOf("password" to password))
     }
 }
