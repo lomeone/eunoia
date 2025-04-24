@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop, feature/** ]
+  pull_request:
+    branches: [ main, develop ]
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  packages: read    # This is required for installing dependencies
+
+jobs:
+  test:
+    name: Test feature
+    uses: lomeone/github-action/.github/workflows/gradle-kotlin-test.yaml@main
+    secrets: inherit

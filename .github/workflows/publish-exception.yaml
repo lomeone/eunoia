@@ -1,4 +1,5 @@
 name: Publish exception module to Github Package
+
 on:
   push:
     branches: [main]
