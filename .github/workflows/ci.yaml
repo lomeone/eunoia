@@ -13,6 +13,15 @@ permissions:
 
 jobs:
   test:
-    name: Test feature
-    uses: lomeone/github-action/.github/workflows/gradle-kotlin-test.yaml@main
-    secrets: inherit
+    name: Gradle Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gradle test
+        uses: lomeone/github-action/gradle/test@main
+        with:
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
+          coveralls-token: ${{ secrets.COVERALLS_TOKEN }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
