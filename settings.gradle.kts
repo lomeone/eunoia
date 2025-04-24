@@ -6,6 +6,9 @@ pluginManagement {
     val springBootVersion: String by settings
     val springDependencyManagementVersion: String by settings
     val shadowVersion: String by settings
+    val koverVersion: String by settings
+    val coverallsVersion: String by settings
+    val sonarqubeVersion: String by settings
 
     plugins {
         kotlin("jvm") version kotlinVersion
@@ -16,10 +19,10 @@ pluginManagement {
         id("org.springframework.boot") version springBootVersion
         id("io.spring.dependency-management") version springDependencyManagementVersion
         id("com.gradleup.shadow") version shadowVersion
+        id("org.jetbrains.kotlinx.kover") version koverVersion
+        id("com.github.kt3k.coveralls") version coverallsVersion
+        id("org.sonarqube") version sonarqubeVersion
     }
-}
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
 include("event-core")
