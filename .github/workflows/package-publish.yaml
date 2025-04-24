@@ -9,7 +9,7 @@ on:
 
 jobs:
   publish:
-    runs-on: lomeone-arc-runner-set
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
