@@ -1,5 +1,7 @@
 val kotlinUtilVersion: String by project
 
+val kotlinxSerializationVersion: String by project
+
 version = kotlinUtilVersion
 
 plugins {
@@ -22,7 +24,7 @@ kotlin {
 dependencies {
     implementation(project(":exception"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:$kotlinxSerializationVersion")
 
     implementation(platform("aws.sdk.kotlin:bom:1.3.112"))
     implementation("aws.sdk.kotlin:kms")
