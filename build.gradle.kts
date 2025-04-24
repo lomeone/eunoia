@@ -6,6 +6,9 @@ plugins {
     kotlin("jvm")
     `maven-publish`
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.kotlinx.kover")
+    id("com.github.kt3k.coveralls")
+    id("org.sonarqube")
 }
 
 allprojects {
@@ -13,6 +16,8 @@ allprojects {
 
     apply {
         plugin("kotlin")
+        plugin("org.jetbrains.kotlinx.kover")
+        plugin("org.sonarqube")
     }
 
     repositories {
@@ -24,6 +29,18 @@ allprojects {
         // kotest
         testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
         testImplementation("io.kotest:kotest-property:$kotestVersion")
+    }
+
+    kover {
+        reports {
+            total {
+                verify {
+                    rule {
+                        minBound(0)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -58,4 +75,14 @@ subprojects {
     tasks.test {
         useJUnitPlatform()
     }
+}
+
+dependencies {
+    kover(project(":event-core"))
+    kover(project(":event-spring-kafka"))
+    kover(project(":event-spring-transactional-outbox"))
+    kover(project(":exception"))
+    kover(project(":kotlin-util"))
+    kover(project(":spring-web-dgs"))
+    kover(project(":spring-web-rest"))
 }
