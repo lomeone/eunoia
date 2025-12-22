@@ -1,4 +1,4 @@
-package com.lomeone.eunoia.kotlin.util.security.crypto
+package com.lomeone.eunoia.security.crypto
 
 interface Crypto {
     fun encrypt(data: ByteArray): ByteArray

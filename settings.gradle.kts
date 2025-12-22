@@ -1,6 +1,14 @@
 val projectName: String by settings
 rootProject.name = projectName
 
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    repositories {
+        mavenCentral()
+        maven("https://packages.confluent.io/maven/")
+    }
+}
+
 pluginManagement {
     val kotlinVersion: String by settings
     val springBootVersion: String by settings
@@ -33,3 +41,6 @@ include("kafka-connect-smt")
 include("kotlin-util")
 include("spring-web-rest")
 include("spring-web-dgs")
+
+include("spring-util")
+include("security-utils")
