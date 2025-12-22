@@ -5,9 +5,8 @@ val kotestVersion: String by project
 plugins {
     kotlin("jvm")
     `maven-publish`
-    id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.kotlinx.kover")
-    id("com.github.kt3k.coveralls")
+    id("com.github.nbaztec.coveralls-jacoco")
     id("org.sonarqube")
 }
 
@@ -17,18 +16,15 @@ allprojects {
     apply {
         plugin("kotlin")
         plugin("org.jetbrains.kotlinx.kover")
+        plugin("com.github.nbaztec.coveralls-jacoco")
         plugin("org.sonarqube")
     }
 
-    repositories {
-        mavenCentral()
-    }
-
     dependencies {
-
         // kotest
-        testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
-        testImplementation("io.kotest:kotest-property:$kotestVersion")
+        testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+        testImplementation("io.kotest:kotest-runner-junit5")
+        testImplementation("io.kotest:kotest-property")
     }
 
     tasks.test {
@@ -88,14 +84,13 @@ dependencies {
     kover(project(":event-spring-transactional-outbox"))
     kover(project(":exception"))
     kover(project(":kotlin-util"))
+    kover(project(":security-utils"))
     kover(project(":spring-web-dgs"))
     kover(project(":spring-web-rest"))
 }
 
-coveralls {
-    jacocoReportPath = "${projectDir}/build/reports/kover/report.xml"
-    sourceDirs = subprojects.map { it.sourceSets.main.get().allSource.srcDirs.toList() }
-        .toList().flatten().map { relativePath(it) }
+coverallsJacoco {
+    reportPath = "${projectDir}/build/reports/kover/report.xml"
 }
 
 sonar {

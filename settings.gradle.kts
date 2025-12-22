@@ -28,7 +28,7 @@ pluginManagement {
         id("io.spring.dependency-management") version springDependencyManagementVersion
         id("com.gradleup.shadow") version shadowVersion
         id("org.jetbrains.kotlinx.kover") version koverVersion
-        id("com.github.kt3k.coveralls") version coverallsVersion
+        id("com.github.nbaztec.coveralls-jacoco") version coverallsVersion
         id("org.sonarqube") version sonarqubeVersion
     }
 }
