@@ -3,12 +3,15 @@ val groupName: String by project
 val kotestVersion: String by project
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.serialization) apply false
+    alias(libs.plugins.kover)
+    alias(libs.plugins.coveralls)
+    alias(libs.plugins.soraqube)
     `maven-publish`
-    id("org.jetbrains.kotlinx.kover")
-    id("com.github.nbaztec.coveralls-jacoco")
-    id("org.sonarqube")
 }
+
+val catalog = libs
 
 allprojects {
     group = groupName
@@ -18,13 +21,6 @@ allprojects {
         plugin("org.jetbrains.kotlinx.kover")
         plugin("com.github.nbaztec.coveralls-jacoco")
         plugin("org.sonarqube")
-    }
-
-    dependencies {
-        // kotest
-        testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
-        testImplementation("io.kotest:kotest-runner-junit5")
-        testImplementation("io.kotest:kotest-property")
     }
 
     tasks.test {
@@ -73,8 +69,10 @@ subprojects {
         }
     }
 
-    tasks.test {
-        useJUnitPlatform()
+    dependencies {
+        // kotest
+        testImplementation(platform(catalog.kotest.bom))
+        testImplementation(catalog.bundles.kotest.test.suite)
     }
 }
 
@@ -84,7 +82,7 @@ dependencies {
     kover(project(":event-spring-transactional-outbox"))
     kover(project(":exception"))
     kover(project(":kotlin-util"))
-    kover(project(":security-utils"))
+    kover(project(":security"))
     kover(project(":spring-web-dgs"))
     kover(project(":spring-web-rest"))
 }
