@@ -1,8 +1,6 @@
-val awsUtilsVersion: String by project
+val awsModuleVersion: String by project
 
-val awsKotlinSdkVersion: String by project
-
-version = awsUtilsVersion
+version = awsModuleVersion
 
 plugins {}
 
