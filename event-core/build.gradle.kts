@@ -21,5 +21,5 @@ kotlin {
 
 dependencies {
     // cloud event
-    api("io.cloudevents:cloudevents-kafka:$cloudeventsVersion")
+    api(libs.cloudevents.kafka)
 }
