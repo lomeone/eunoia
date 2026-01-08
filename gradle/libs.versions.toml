@@ -7,6 +7,8 @@ kotlin = "2.3.0"
 kotlinxDatetime = "0.7.1"
 kotlinxSerializationJSON = "1.0.9"
 kotlinxCoroutines = "1.10.2"
+aws = "1.5.115"
+cloudeventsKafka = "4.0.1"
 kotest = "6.0.7"
 kover = "0.9.4"
 coveralls = "1.2.20"
@@ -16,6 +18,10 @@ sonarqube = "7.2.2.6593"
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJSON" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+aws-bom = { module = "aws.sdk.kotlin:bom", version.ref = "aws" }
+aws-kms = { module = "aws.sdk.kotlin:kms" }
+aws-sts = { module = "aws.sdk.kotlin:sts" }
+cloudevents-kafka = { module = "io.cloudevents:cloudevents-kafka", version.ref = "cloudeventsKafka" }
 kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5" }
 kotest-property = { module = "io.kotest:kotest-property" }
