@@ -43,4 +43,6 @@ include("spring-web-rest")
 include("spring-web-dgs")
 
 include("spring-util")
-include("security-utils")
+include("security")
+
+include("aws")
