@@ -1,15 +1,19 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 val groupName: String by project
 
 val kotestVersion: String by project
 
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.serialization) apply false
+    alias(libs.plugins.kover)
+    alias(libs.plugins.coveralls)
+    alias(libs.plugins.soraqube)
     `maven-publish`
-    id("org.jetbrains.kotlin.plugin.serialization")
-    id("org.jetbrains.kotlinx.kover")
-    id("com.github.kt3k.coveralls")
-    id("org.sonarqube")
 }
+
+val catalog = libs
 
 allprojects {
     group = groupName
@@ -17,39 +21,24 @@ allprojects {
     apply {
         plugin("kotlin")
         plugin("org.jetbrains.kotlinx.kover")
+        plugin("com.github.nbaztec.coveralls-jacoco")
         plugin("org.sonarqube")
-    }
-
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-
-        // kotest
-        testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
-        testImplementation("io.kotest:kotest-property:$kotestVersion")
-    }
-
-    tasks.test {
-        useJUnitPlatform()
-        finalizedBy(tasks.koverVerify, tasks.koverHtmlReport, tasks.koverXmlReport)
-    }
-
-    kover {
-        reports {
-            total {
-                verify {
-                    rule {
-                        minBound(0)
-                    }
-                }
-            }
-        }
     }
 }
 
 subprojects {
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
+        jvmToolchain(21)
+    }
+
     apply {
         plugin("maven-publish")
     }
@@ -77,8 +66,15 @@ subprojects {
         }
     }
 
+    dependencies {
+        // kotest
+        testImplementation(platform(catalog.kotest.bom))
+        testImplementation(catalog.bundles.kotest.test.suite)
+    }
+
     tasks.test {
         useJUnitPlatform()
+        finalizedBy(tasks.koverVerify, tasks.koverHtmlReport, tasks.koverXmlReport)
     }
 }
 
@@ -88,14 +84,24 @@ dependencies {
     kover(project(":event-spring-transactional-outbox"))
     kover(project(":exception"))
     kover(project(":kotlin-util"))
-    kover(project(":spring-web-dgs"))
-    kover(project(":spring-web-rest"))
+    kover(project(":security"))
+    kover(project(":spring-web"))
 }
 
-coveralls {
-    jacocoReportPath = "${projectDir}/build/reports/kover/report.xml"
-    sourceDirs = subprojects.map { it.sourceSets.main.get().allSource.srcDirs.toList() }
-        .toList().flatten().map { relativePath(it) }
+kover {
+    reports {
+        total {
+            verify {
+                rule {
+                    minBound(0)
+                }
+            }
+        }
+    }
+}
+
+coverallsJacoco {
+    reportPath = "${projectDir}/build/reports/kover/report.xml"
 }
 
 sonar {

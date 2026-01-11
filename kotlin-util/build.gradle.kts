@@ -5,20 +5,8 @@ val kotlinxSerializationVersion: String by project
 version = kotlinUtilVersion
 
 plugins {
+    kotlin("kapt")
     id("org.jetbrains.kotlin.plugin.serialization")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-kotlin {
-    jvmToolchain(21)
 }
 
 dependencies {
@@ -28,4 +16,6 @@ dependencies {
 
     implementation(platform("aws.sdk.kotlin:bom:1.3.112"))
     implementation("aws.sdk.kotlin:kms")
+
+    kapt("jakarta.persistence:jakarta.persistence-api")
 }
