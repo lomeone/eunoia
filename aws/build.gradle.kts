@@ -11,10 +11,3 @@ dependencies {
     api(libs.aws.kms)
     implementation(libs.aws.sts)
 }
-
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(21)
-}

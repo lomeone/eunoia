@@ -14,12 +14,8 @@ pluginManagement {
     val springBootVersion: String by settings
     val springDependencyManagementVersion: String by settings
     val shadowVersion: String by settings
-    val koverVersion: String by settings
-    val coverallsVersion: String by settings
-    val sonarqubeVersion: String by settings
 
     plugins {
-        kotlin("jvm") version kotlinVersion
         kotlin("plugin.spring") version kotlinVersion
         kotlin("kapt") version kotlinVersion
         kotlin("plugin.jpa") version kotlinVersion
@@ -27,9 +23,6 @@ pluginManagement {
         id("org.springframework.boot") version springBootVersion
         id("io.spring.dependency-management") version springDependencyManagementVersion
         id("com.gradleup.shadow") version shadowVersion
-        id("org.jetbrains.kotlinx.kover") version koverVersion
-        id("com.github.nbaztec.coveralls-jacoco") version coverallsVersion
-        id("org.sonarqube") version sonarqubeVersion
     }
 }
 
@@ -39,10 +32,6 @@ include("event-spring-transactional-outbox")
 include("exception")
 include("kafka-connect-smt")
 include("kotlin-util")
-include("spring-web-rest")
-include("spring-web-dgs")
-
-include("spring-util")
 include("security")
-
+include("spring-web")
 include("aws")

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 val groupName: String by project
 
 val kotestVersion: String by project
@@ -22,26 +24,21 @@ allprojects {
         plugin("com.github.nbaztec.coveralls-jacoco")
         plugin("org.sonarqube")
     }
-
-    tasks.test {
-        useJUnitPlatform()
-        finalizedBy(tasks.koverVerify, tasks.koverHtmlReport, tasks.koverXmlReport)
-    }
-
-    kover {
-        reports {
-            total {
-                verify {
-                    rule {
-                        minBound(0)
-                    }
-                }
-            }
-        }
-    }
 }
 
 subprojects {
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
+        jvmToolchain(21)
+    }
+
     apply {
         plugin("maven-publish")
     }
@@ -74,6 +71,11 @@ subprojects {
         testImplementation(platform(catalog.kotest.bom))
         testImplementation(catalog.bundles.kotest.test.suite)
     }
+
+    tasks.test {
+        useJUnitPlatform()
+        finalizedBy(tasks.koverVerify, tasks.koverHtmlReport, tasks.koverXmlReport)
+    }
 }
 
 dependencies {
@@ -83,8 +85,19 @@ dependencies {
     kover(project(":exception"))
     kover(project(":kotlin-util"))
     kover(project(":security"))
-    kover(project(":spring-web-dgs"))
-    kover(project(":spring-web-rest"))
+    kover(project(":spring-web"))
+}
+
+kover {
+    reports {
+        total {
+            verify {
+                rule {
+                    minBound(0)
+                }
+            }
+        }
+    }
 }
 
 coverallsJacoco {
