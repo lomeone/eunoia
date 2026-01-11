@@ -4,4 +4,9 @@ version = springWebDgsVersion
 
 plugins {}
 
-dependencies {}
+dependencies {
+    implementation(project(":exception"))
+
+    implementation(platform(libs.spring.framework.bom))
+    implementation(libs.spring.framework.web)
+}
