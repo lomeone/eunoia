@@ -7,4 +7,8 @@ class KafkaEventConsumer : EventConsumer {
     override fun consume(origin: String, handler: (event: CloudEvent) -> Unit) {
         TODO("Not yet implemented")
     }
+
+    override fun close() {
+        TODO("Not yet implemented")
+    }
 }

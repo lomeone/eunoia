@@ -29,4 +29,8 @@ class KafkaEventProducer(
 
         return headers
     }
+
+    override fun close() {
+        TODO("Not yet implemented")
+    }
 }
