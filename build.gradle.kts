@@ -80,11 +80,11 @@ subprojects {
 
 dependencies {
     kover(project(":event-core"))
-    kover(project(":event-spring-kafka"))
     kover(project(":event-spring-transactional-outbox"))
     kover(project(":exception"))
     kover(project(":kotlin-util"))
     kover(project(":security"))
+    kover(project(":spring-event-kafka"))
     kover(project(":spring-web"))
 }
 

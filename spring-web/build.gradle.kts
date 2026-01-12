@@ -7,6 +7,6 @@ plugins {}
 dependencies {
     implementation(project(":exception"))
 
-    implementation(platform(libs.spring.framework.bom))
-    implementation(libs.spring.framework.web)
+    implementation(platform(libs.spring.boot.bom))
+    implementation(libs.spring.boot.web.starter)
 }

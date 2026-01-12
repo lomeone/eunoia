@@ -28,11 +28,11 @@ pluginManagement {
 
 include("aws")
 include("event-core")
-include("event-spring-kafka")
 include("event-spring-transactional-outbox")
 include("exception")
 include("kafka-connect-smt")
 include("kotlin-util")
 include("optimize")
 include("security")
+include("spring-event-kafka")
 include("spring-web")

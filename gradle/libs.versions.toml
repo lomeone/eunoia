@@ -9,7 +9,7 @@ kotlinxSerializationJSON = "1.0.9"
 kotlinxCoroutines = "1.10.2"
 aws = "1.5.115"
 cloudeventsKafka = "4.0.1"
-springFramework = "6.2.15"
+springBoot = "3.5.9"
 kotest = "6.0.7"
 kover = "0.9.4"
 coveralls = "1.2.20"
@@ -23,8 +23,9 @@ aws-bom = { module = "aws.sdk.kotlin:bom", version.ref = "aws" }
 aws-kms = { module = "aws.sdk.kotlin:kms" }
 aws-sts = { module = "aws.sdk.kotlin:sts" }
 cloudevents-kafka = { module = "io.cloudevents:cloudevents-kafka", version.ref = "cloudeventsKafka" }
-spring-framework-bom = { module = "org.springframework:spring-framework-bom", version.ref = "springFramework"}
-spring-framework-web = { module = "org.springframework:spring-web"}
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+spring-boot-jdbc-starter = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
+spring-boot-web-starter = { module = "org.springframework.boot:spring-boot-starter-web" }
 kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5" }
 kotest-property = { module = "io.kotest:kotest-property" }
