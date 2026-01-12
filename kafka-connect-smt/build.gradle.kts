@@ -7,7 +7,6 @@ val slf4jApiVersion: String by project
 version = kafkaConnectSmtVersion
 
 plugins {
-    id("com.gradleup.shadow")
 }
 
 java {

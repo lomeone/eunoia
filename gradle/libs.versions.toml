@@ -24,9 +24,11 @@ aws-bom = { module = "aws.sdk.kotlin:bom", version.ref = "aws" }
 aws-kms = { module = "aws.sdk.kotlin:kms" }
 aws-sts = { module = "aws.sdk.kotlin:sts" }
 cloudevents-kafka = { module = "io.cloudevents:cloudevents-kafka", version.ref = "cloudeventsKafka" }
+jakarta-persistence-api = { module = "jakarta.persistence:jakarta.persistence-api" }
+jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api" }
 spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
-spring-boot-jdbc-starter = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
-spring-boot-web-starter = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5" }
