@@ -2,14 +2,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val groupName: String by project
 
-val kotestVersion: String by project
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.serialization) apply false
     alias(libs.plugins.kover)
     alias(libs.plugins.coveralls)
     alias(libs.plugins.soraqube)
+    `java-library`
     `maven-publish`
 }
 
@@ -40,12 +39,8 @@ subprojects {
     }
 
     apply {
+        plugin("java-library")
         plugin("maven-publish")
-    }
-
-    java {
-        withJavadocJar()
-        withSourcesJar()
     }
 
     publishing {
@@ -67,6 +62,9 @@ subprojects {
     }
 
     dependencies {
+        // logging
+        implementation(catalog.kotlin.logging)
+
         // kotest
         testImplementation(platform(catalog.kotest.bom))
         testImplementation(catalog.bundles.kotest.test.suite)

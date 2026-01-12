@@ -10,6 +10,7 @@ kotlinxCoroutines = "1.10.2"
 aws = "1.5.115"
 cloudeventsKafka = "4.0.1"
 springBoot = "3.5.9"
+kotlinLogging = "7.0.14"
 kotest = "6.0.7"
 kover = "0.9.4"
 coveralls = "1.2.20"
@@ -26,6 +27,7 @@ cloudevents-kafka = { module = "io.cloudevents:cloudevents-kafka", version.ref =
 spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
 spring-boot-jdbc-starter = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
 spring-boot-web-starter = { module = "org.springframework.boot:spring-boot-starter-web" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5" }
 kotest-property = { module = "io.kotest:kotest-property" }
