@@ -1,8 +1,8 @@
-val eventSpringKafkaVersion: String by project
+val springEventKafkaPackageVersion: String by project
 
 val springKafkaVersion: String by project
 
-version = eventSpringKafkaVersion
+version = springEventKafkaPackageVersion
 
 plugins {}
 

@@ -1,6 +1,6 @@
-val springWebDgsVersion: String by project
+val springWebPackageVersion: String by project
 
-version = springWebDgsVersion
+version = springWebPackageVersion
 
 plugins {}
 

@@ -1,18 +1,8 @@
-plugins {
-    kotlin("jvm")
-}
+val optimizePackageVersion: String by project
 
-group = "com.lomeone.eunoia"
-version = "unspecified"
+version = optimizePackageVersion
 
-repositories {
-    mavenCentral()
-}
+plugins {}
 
 dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

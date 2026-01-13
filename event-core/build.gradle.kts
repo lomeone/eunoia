@@ -1,6 +1,6 @@
-val eventCoreVersion: String by project
+val eventCorePackageVersion: String by project
 
-version = eventCoreVersion
+version = eventCorePackageVersion
 
 plugins {}
 
