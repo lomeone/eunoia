@@ -10,11 +10,12 @@ class KafkaEventProducer(
     private val kafkaTemplate: KafkaTemplate<String, CloudEvent>
 ) : EventProducer {
     override fun produce(destination: String, event: CloudEvent) {
-        kafkaTemplate.send(generateProduceRecord(destination, event))
+        TODO("Not yet implemented")
     }
 
-    private fun generateProduceRecord(destination: String, event: CloudEvent) =
-        ProducerRecord(destination, null, PARTITION_KEY, event, generateHeader(event))
+    private fun generateProduceRecord(destination: String, event: CloudEvent) = {
+        TODO("Not yet implemented")
+    }
 
     private fun generateHeader(event: CloudEvent): RecordHeaders {
         val headers = RecordHeaders()
@@ -28,5 +29,9 @@ class KafkaEventProducer(
         }
 
         return headers
+    }
+
+    override fun close() {
+        TODO("Not yet implemented")
     }
 }

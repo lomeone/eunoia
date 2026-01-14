@@ -1,12 +1,12 @@
-val springWebDgsVersion: String by project
+val springWebPackageVersion: String by project
 
-version = springWebDgsVersion
+version = springWebPackageVersion
 
 plugins {}
 
 dependencies {
     implementation(project(":exception"))
 
-    implementation(platform(libs.spring.framework.bom))
-    implementation(libs.spring.framework.web)
+    implementation(platform(libs.spring.boot.bom))
+    implementation(libs.spring.boot.starter.web)
 }

@@ -1,6 +1,6 @@
-val exceptionVersion: String by project
+val exceptionPackageVersion: String by project
 
-version = exceptionVersion
+version = exceptionPackageVersion
 
 plugins {}
 

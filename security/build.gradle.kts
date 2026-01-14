@@ -1,6 +1,6 @@
-val securityUtilVersion: String by project
+val securityPackageVersion: String by project
 
-version = securityUtilVersion
+version = securityPackageVersion
 
 plugins {}
 

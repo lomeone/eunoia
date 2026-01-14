@@ -1,12 +1,8 @@
-val eventSpringKafkaVersion: String by project
+val springEventKafkaPackageVersion: String by project
 
-val springKafkaVersion: String by project
+version = springEventKafkaPackageVersion
 
-version = eventSpringKafkaVersion
-
-plugins {
-    kotlin("plugin.spring")
-}
+plugins {}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -23,7 +19,4 @@ kotlin {
 
 dependencies {
     implementation(project(":event-core"))
-
-    // Kafka
-    api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
 }

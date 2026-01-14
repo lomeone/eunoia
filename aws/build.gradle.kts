@@ -1,6 +1,6 @@
-val awsModuleVersion: String by project
+val awsPackageVersion: String by project
 
-version = awsModuleVersion
+version = awsPackageVersion
 
 plugins {}
 
