@@ -1,7 +1,5 @@
 val springEventKafkaPackageVersion: String by project
 
-val springKafkaVersion: String by project
-
 version = springEventKafkaPackageVersion
 
 plugins {}
@@ -21,7 +19,4 @@ kotlin {
 
 dependencies {
     implementation(project(":event-core"))
-
-    // Kafka
-    api("org.springframework.kafka:spring-kafka:$springKafkaVersion")
 }
