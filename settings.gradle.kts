@@ -11,9 +11,7 @@ dependencyResolutionManagement {
 
 include("aws")
 include("event-core")
-include("event-spring-transactional-outbox")
 include("exception")
-include("kafka-connect-smt")
 include("kotlin-util")
 include("optimize")
 include("security")
