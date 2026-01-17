@@ -80,6 +80,7 @@ dependencies {
     kover(project(":event-core"))
     kover(project(":exception"))
     kover(project(":kotlin-util"))
+    kover(project(":optimization"))
     kover(project(":security"))
     kover(project(":spring-event-kafka"))
     kover(project(":spring-web"))
