@@ -1,6 +1,6 @@
-val optimizePackageVersion: String by project
+val optimizationPackageVersion: String by project
 
-version = optimizePackageVersion
+version = optimizationPackageVersion
 
 plugins {}
 
