@@ -1,5 +1,5 @@
 package com.lomeone.eunoia.optimizaion
 
-interface FeatureFlag {
+interface FeatureFlag : AutoCloseable {
     fun isEnabled(key: String, context: OptimizationContext? = null): Boolean
 }
