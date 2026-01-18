@@ -7,10 +7,10 @@ interface DynamicConfig : AutoCloseable {
     fun <T> getCustom(key: String, clazz: Class<T>, defaultValue: T): T
 }
 
-fun interface ChangeListener {
-    fun onConfigUpdated(key: String, value: Any)
+fun interface ConfigChangeListener {
+    fun onChanged(key: String, newValue: Any)
 }
 
 interface ListenableDynamicConfig : DynamicConfig {
-    fun addListener(key: String, listener: ChangeListener): AutoCloseable
+    fun addListener(key: String, listener: ConfigChangeListener): AutoCloseable
 }
