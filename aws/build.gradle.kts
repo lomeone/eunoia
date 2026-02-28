@@ -1,7 +1,3 @@
-val awsPackageVersion: String by project
-
-version = awsPackageVersion
-
 plugins {}
 
 dependencies {

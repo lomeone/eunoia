@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val groupName: String by project
+val eunoiaVersion: String by project
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -16,6 +17,7 @@ val catalog = libs
 
 allprojects {
     group = groupName
+    version = eunoiaVersion
 
     apply {
         plugin("kotlin")

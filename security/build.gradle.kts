@@ -1,7 +1,3 @@
-val securityPackageVersion: String by project
-
-version = securityPackageVersion
-
 plugins {}
 
 java {
@@ -18,7 +14,3 @@ kotlin {
 }
 
 dependencies {}
-
-tasks.test {
-    useJUnitPlatform()
-}

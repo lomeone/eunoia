@@ -1,7 +1,3 @@
-val kotlinUtilVersion: String by project
-
-version = kotlinUtilVersion
-
 plugins {
     kotlin("kapt")
     id("org.jetbrains.kotlin.plugin.serialization")
