@@ -1,7 +1,3 @@
-val springWebPackageVersion: String by project
-
-version = springWebPackageVersion
-
 plugins {}
 
 dependencies {

@@ -1,7 +1,3 @@
-val springEventKafkaPackageVersion: String by project
-
-version = springEventKafkaPackageVersion
-
 plugins {}
 
 java {
