@@ -23,7 +23,7 @@ class AESGCMCrypto(
 
     private val secureRandom = SecureRandom()
 
-    override fun encrypt(data: ByteArray): ByteArray {
+    override suspend fun encrypt(data: ByteArray): ByteArray {
         val cipher = Cipher.getInstance(ALGORITHM)
         val iv = generateRandomIV()
         cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(this.key, "AES"), GCMParameterSpec(TAG_SIZE, iv))
@@ -37,7 +37,7 @@ class AESGCMCrypto(
         return iv
     }
 
-    override fun decrypt(encryptedData: ByteArray): ByteArray {
+    override suspend fun decrypt(encryptedData: ByteArray): ByteArray {
         val (iv, encryptedData) = separateIVAndEncryptedData(encryptedData)
 
         val cipher = Cipher.getInstance(ALGORITHM)
