@@ -13,4 +13,4 @@ jobs:
       packages: write
     uses: ./.github/workflows/package-publish.yaml
     with:
-      module: 'spring-web-rest'
+      module: 'spring-web'

@@ -6,5 +6,6 @@ plugins {
 dependencies {
     implementation(project(":exception"))
 
-    implementation(libs.kotlinx.serialization)
+    implementation(platform(libs.kotlinx.serialization.bom))
+    implementation(libs.kotlinx.serialization.json)
 }
