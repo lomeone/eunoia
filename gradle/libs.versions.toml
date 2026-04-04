@@ -1,0 +1,48 @@
+# Version catalog is a central place for you to declare and version dependencies
+# https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
+# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
+
+[versions]
+kotlin = "2.3.0"
+kotlinxDatetime = "0.7.1"
+kotlinxSerialization = "1.9.0"
+kotlinxCoroutines = "1.10.2"
+awsSdk = "1.5.115"
+cloudeventsKafkaSdk = "4.0.1"
+springBoot = "3.5.9"
+kotlinLogging = "7.0.14"
+kotest = "6.0.7"
+kover = "0.9.4"
+coveralls = "1.2.20"
+sonarqube = "7.2.2.6593"
+
+[libraries]
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlinx-serialization-bom = { module = "org.jetbrains.kotlinx:kotlinx-serialization-bom", version.ref = "kotlinxSerialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+aws-sdk-kotlin-bom = { module = "aws.sdk.kotlin:bom", version.ref = "awsSdk" }
+aws-sdk-kotlin-kms = { module = "aws.sdk.kotlin:kms" }
+aws-sdk-kotlin-secretsmanager-jvm = { module = "aws.sdk.kotlin:secretsmanager-jvm" }
+aws-sdk-kotlin-sts = { module = "aws.sdk.kotlin:sts" }
+cloudevents-kafka = { module = "io.cloudevents:cloudevents-kafka", version.ref = "cloudeventsKafkaSdk" }
+jakarta-persistence-api = { module = "jakarta.persistence:jakarta.persistence-api" }
+jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api" }
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
+kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5" }
+kotest-property = { module = "io.kotest:kotest-property" }
+
+# Libraries can be bundled together for easier import
+[bundles]
+kotest-test-suite = ["kotest-runner-junit5", "kotest-property"]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+coveralls = { id = "com.github.nbaztec.coveralls-jacoco", version.ref = "coveralls" }
+soraqube = { id = "org.sonarqube", version.ref = "sonarqube" }
